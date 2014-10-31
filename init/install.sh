@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo "Install tools for you"
+
+URL='https://raw.githubusercontent.com/choonho/conf/master'
+INIT='init'
+VIMRC='.vimrc'
+MKCS='mkcs'
 
 function install_pkg()
 {
@@ -11,12 +15,28 @@ function install_pkg()
 
 function update_config()
 {
-    echo "Download .vim"
-    echo "Download mkcs"
+    vimrc=$URL/$INIT/$VIMRC
+    mkcs=$URL/$INIT/$MKCS
 
+    echo "Download .vim from $vimrc"
+    rm -f $1/$VIMRC
+    wget --no-check-certificate -O $1/$VIMRC $vimrc
+
+    echo "Download mkcs from $mkcs"
+    rm -f $1/$MKCS
+    wget --no-check-certificate -O $1/$MKCS $mkcs
+    chmod 744 $1/$MKCS
 }
 
-
-install_pkg
-update_config
+if [ $# -eq 1 ]
+then
+    echo "Install tools in $1"
+    install_pkg $1
+    update_config $1
+else
+    PWD=`pwd`
+    echo "Install tools in $PWD"
+    install_pkg $PWD
+    update_config $PWD
+fi
 
