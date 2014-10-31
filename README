@@ -1,0 +1,4 @@
+wget --no-check-certificate https://raw.githubusercontent.com/choonho/conf/master/init/install.sh
+chmod 700 install.sh
+./install.sh
+
