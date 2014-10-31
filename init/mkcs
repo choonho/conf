@@ -1,0 +1,21 @@
+#!/bin/bash
+CSFILE=cscope.files
+
+if [ -f cscope.files ]; then
+        rm -rf cscope.*
+fi
+
+if [ -f tags ]; then
+        rm tags
+fi
+
+while [ $# -ne 0 ]
+          do
+              echo "Current Directory: $1 , Remaining No. of directories: $#"
+              #Pass $1 to some bash function or do whatever
+                  find $1 \( -name '*.c' -o -name '*.cpp' -o -name '*.cc' -o -name '*.h' -o -name '*.s' -o -name '*.S' \) -print >> cscope.files
+              shift
+done
+
+ctags -L $CSFILE
+cscope -i $CSFILE
