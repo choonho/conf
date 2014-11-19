@@ -2,3 +2,7 @@ wget --no-check-certificate https://raw.githubusercontent.com/choonho/conf/maste
 chmod 700 install.sh
 ./install.sh
 
+To build QEMU & libvirt
+
+build/qemu_build.sh
+
