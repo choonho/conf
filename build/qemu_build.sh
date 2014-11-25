@@ -32,8 +32,8 @@ function build_libvirt
     ldconfig
 
     echo "To start libvirt..."
-    echo "/usr/local/sbin/libvirt -d"
-    /usr/local/sbin/libvirt -d
+    echo "/usr/local/sbin/libvirtd -d"
+    /usr/local/sbin/libvirtd -d
     virsh version
 
     echo "reference: http://sunshout.tistory.com/1607"
